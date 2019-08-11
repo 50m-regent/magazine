@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190131-2.6 (utf8.euc) (TeX Live 2019) (preloaded format=platex 2019.8.3)  12 AUG 2019 01:54
+This is e-pTeX, Version 3.14159265-p3.8.2-190131-2.6 (utf8.euc) (TeX Live 2019) (preloaded format=platex 2019.8.3)  12 AUG 2019 02:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -119,14 +119,38 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 19.
  [1
 
-] (./main.aux) ) 
-Here is how much of TeX's memory you used:
- 487 strings out of 493216
- 5406 string characters out of 6143983
- 71881 words of memory out of 5000000
- 4542 multiletter control sequences out of 15000+600000
- 14077 words of font info for 63 fonts, out of 8000000 for 9000
- 934 hyphenation exceptions out of 8191
- 26i,8n,20p,183b,238s stack positions out of 5000i,500n,10000p,200000b,80000s
+]
+LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
+(Font)              scaled to size 11.53198pt on input line 73.
+LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
+(Font)              scaled to size 11.53198pt on input line 73.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 78.
+LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 78.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 78.
+LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 78.
 
-Output written on main.dvi (1 page, 2984 bytes).
+
+LaTeX Warning: Reference `flutter_main_page' on page 2 undefined on input line 78.
+
+
+LaTeX Warning: Reference `flutter_download_page' on page 2 undefined on input line 79.
+
+[2] (./main.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 496 strings out of 493216
+ 5547 string characters out of 6143983
+ 72881 words of memory out of 5000000
+ 4550 multiletter control sequences out of 15000+600000
+ 14973 words of font info for 67 fonts, out of 8000000 for 9000
+ 934 hyphenation exceptions out of 8191
+ 26i,8n,20p,183b,326s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on main.dvi (2 pages, 6996 bytes).

@@ -39,6 +39,47 @@
         皆さんはGoogleという会社を知っているでしょうか。
         むしろ知らない人がいるのかというレベルですね。
         言わずと知れた世界の大企業です。
-        そんなGoogle
-    
+        そんなGoogleが開発しているWeb・アプリ開発ようフレームワークがFlutterです。
+        皆さんが普段使っているようなGoogleのアプリも、このフレームワークを使用して実装されています。
+
+        さて、そんなFlutterですが、DartというこれまたGoogleが開発している言語を使用してソースを書きます。
+        個人的に他のアプリ開発方法\footnote{Xcodeを使用したiOSアプリ開発や、Android Studioを使用した
+        Androidアプリ開発}と比べて嬉しいなと感じた点を挙げてみます。
+
+        \begin{itemize}
+            \item GUI\footnote{マウスを使って直感的な操作をできる画面}で設定やアプリの構成をする必要がなく、
+                　コーディングで全て行うので、シンプルな開発ができる。
+            \item iOS、Android両対応のアプリを簡単に作ることができる。
+            \item 標準でデザインに使えるような部品が用意されている。
+        \end{itemize}
+
+        Flutterにはまだまだ沢山の長所がありますが、逆に欠点もあります。
+        中でも最大のものは、日本語の解説が少ないという点です。
+        筆者が開発してる時は、8割以上海外のウェブページを参考にしていました。
+        
+        これからFlutterに触れる人たちが英語によって門前払いを食らわずに、
+        この文書を通して少しても忌避感をなくせれば幸いです。
+
+    \section*{環境構築}
+        さて、まずはじめにFlutterで開発ができる環境を作らないといけません。
+
+        Android StudioというIDE\footnote{統合開発環境。一つのソフトウェアでシステム開発ができるようにしてあるもの}
+        を使用する方法と、VScodeというエディタ\footnote{テキストファイルを編集するソフト}を使用する方法
+        がありますが、個人的にオススメのVScodeの方を解説していきたいと思います。
+        「Android Studioで開発しないと耐えられない！」という人は各自調べてください。
+
+        なお、iOSアプリの開発をするにはOS Xが必須です。ご了承ください。
+
+        \subsection*{全OS共通編}
+            \subsubsection*{SDK\footnote{ソフトウェアを使うためにセットにしてあるファイル}のダウンロード}
+                まず始めに、PCがFlutterを認識できるようにします。
+            \begin{itemize}
+                \item Flutter公式サイト(https://flutter.dev/)にアクセス。
+                \item 図\ref{flutter_main_page}の"Get Started"を押した後、
+                      図\ref{flutter_download_page}のページで適当なOSを選択。
+                \item flutter\_\{OS名\}\_vX.X.X-stable.zipをダウンロード。
+            \end{itemize}
+
+        \subsection*{Windows編}
+            
 \end{document}
