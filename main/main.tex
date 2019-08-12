@@ -1,5 +1,7 @@
 \documentclass{jsarticle}
 
+\usepackage[dvipdfmx]{graphicx}
+
 \title{Flutterであなたもアプリデベロッパー!!}
 \author{}
 \date{}
@@ -73,13 +75,48 @@
         \subsection*{全OS共通編}
             \subsubsection*{SDK\footnote{ソフトウェアを使うためにセットにしてあるファイル}のダウンロード}
                 まず始めに、PCがFlutterを認識できるようにします。
-            \begin{itemize}
+            \begin{enumerate}
                 \item Flutter公式サイト(https://flutter.dev/)にアクセス。
-                \item 図\ref{flutter_main_page}の"Get Started"を押した後、
-                      図\ref{flutter_download_page}のページで適当なOSを選択。
+                \item 図\ref{fig:flutter_main_page}の"Get Started"を押した後、
+                      図\ref{fig:flutter_download_page}のページで適当なOSを選択。
                 \item flutter\_\{OS名\}\_vX.X.X-stable.zipをダウンロード。
-            \end{itemize}
+            \end{enumerate}
+
+            \begin{figure}[ht]
+                \centering
+                \includegraphics[width=10cm]{images/flutter_main_page.png}
+                \caption{Flutter公式ページ}
+                \label{fig:flutter_main_page}
+
+                \includegraphics[width=10cm]{images/flutter_download_page.png}
+                \caption{Flutterダウンロードページ}
+                \label{fig:flutter_download_page}
+
+                \includegraphics[width=10cm]{images/flutter_download_link.png}
+                \caption{Flutterダウンロードリンク}
+                \label{fig:flutter_download_link}
+            \end{figure}
 
         \subsection*{Windows編}
+            さて、ここからはWindowsとOS X、Linuxで手順が変わってくるので、この説では
+            Windowsに重きを置いて残りの解説をします。
+
+            \subsubsection*{SDKのインストール}
+                共通編でダウンロードしてきたSDKをPCにインストールしましょう。
+
+                \begin{enumerate}
+                    \item 任意の場所\footnote{任意の場所がよくわからない人はデスクトップとかが安心です}
+                          にダウンロードしてきたzipファイルを解凍。
+                    \item 解凍したフォルダ内のflutter\_console.batを実行。
+                \end{enumerate}
+
+                Flutterコンソールが立ち上がれば成功です！
+
+                また、Flutterコンソールではなく、普段使っているコンソールでFlutterをいじりたい方は、
+                「Flutter パス設定\footnote{OSがプログラムを認識できるようにプログラムの場所を示すこと}」
+                などで検索してみたください。
+
+            \subsubsection*{Android Studio、VScodeのインストール、設定}
+                
             
 \end{document}
