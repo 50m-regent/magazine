@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190131-2.6 (utf8.euc) (TeX Live 2019) (preloaded format=platex 2019.8.3)  12 AUG 2019 10:35
+This is e-pTeX, Version 3.14159265-p3.8.2-190131-2.6 (utf8.euc) (TeX Live 2019) (preloaded format=platex 2019.8.3)  3 OCT 2019 10:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -139,27 +139,26 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 
 ]
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 75.
+(Font)              scaled to size 11.53198pt on input line 74.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 75.
-File: images/flutter_main_page.png Graphic file (type bmp)
-<images/flutter_main_page.png>
-LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 88.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 88.
-File: images/flutter_download_page.png Graphic file (type bmp)
-<images/flutter_download_page.png>
+(Font)              scaled to size 11.53198pt on input line 74.
 File: images/flutter_download_link.png Graphic file (type bmp)
 <images/flutter_download_link.png>
- [2] [3] [4] (./main.aux) ) 
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 8.64899pt on input line 86.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 8.64899pt on input line 86.
+ [2]
+File: images/AVD_manager.png Graphic file (type bmp)
+<images/AVD_manager.png>
+ [3] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 880 strings out of 493216
- 10896 string characters out of 6143983
- 80438 words of memory out of 5000000
- 4907 multiletter control sequences out of 15000+600000
+ 876 strings out of 493216
+ 10743 string characters out of 6143983
+ 79438 words of memory out of 5000000
+ 4904 multiletter control sequences out of 15000+600000
  15245 words of font info for 69 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
  26i,8n,21p,219b,326s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.dvi (4 pages, 9076 bytes).
+Output written on main.dvi (3 pages, 9140 bytes).

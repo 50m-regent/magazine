@@ -41,15 +41,14 @@
         皆さんはGoogleという会社を知っているでしょうか。
         むしろ知らない人がいるのかというレベルですね。
         言わずと知れた世界の大企業です。
-        そんなGoogleが開発しているWeb・アプリ開発ようフレームワークがFlutterです。
+        そんなGoogleが開発しているWeb・アプリ開発用フレームワークがFlutterです。
         皆さんが普段使っているようなGoogleのアプリも、このフレームワークを使用して実装されています。
 
         さて、そんなFlutterですが、DartというこれまたGoogleが開発している言語を使用してソースを書きます。
-        個人的に他のアプリ開発方法\footnote{Xcodeを使用したiOSアプリ開発や、Android Studioを使用した
-        Androidアプリ開発}と比べて嬉しいなと感じた点を挙げてみます。
+        個人的に他のアプリ開発方法と比べて嬉しいなと感じた点を挙げてみます。
 
         \begin{itemize}
-            \item GUI\footnote{マウスを使って直感的な操作をできる画面}で設定やアプリの構成をする必要がなく、
+            \item GUIで設定やアプリの構成をする必要がなく、
                 　コーディングで全て行うので、シンプルな開発ができる。
             \item iOS、Android両対応のアプリを簡単に作ることができる。
             \item 標準でデザインに使えるような部品が用意されている。
@@ -66,57 +65,68 @@
         さて、まずはじめにFlutterで開発ができる環境を作らないといけません。
 
         Android StudioというIDE\footnote{統合開発環境。一つのソフトウェアでシステム開発ができるようにしてあるもの}
-        を使用する方法と、VScodeというエディタ\footnote{テキストファイルを編集するソフト}を使用する方法
+        を使用する方法と、VScodeというエディタを使用する方法
         がありますが、個人的にオススメのVScodeの方を解説していきたいと思います。
         「Android Studioで開発しないと耐えられない！」という人は各自調べてください。
 
         なお、iOSアプリの開発をするにはOS Xが必須です。ご了承ください。
 
         \subsection*{全OS共通編}
-            \subsubsection*{SDK\footnote{ソフトウェアを使うためにセットにしてあるファイル}のダウンロード}
-                まず始めに、PCがFlutterを認識できるようにします。
-            \begin{enumerate}
-                \item Flutter公式サイト(https://flutter.dev/)にアクセス。
-                \item 図\ref{fig:flutter_main_page}の"Get Started"を押した後、
-                      図\ref{fig:flutter_download_page}のページで適当なOSを選択。
-                \item flutter\_\{OS名\}\_vX.X.X-stable.zipをダウンロード。
-            \end{enumerate}
+            \subsubsection*{Flutter SDK\footnote{ソフトウェアを使うためにセットにされてるファイル}のダウンロード、インストール}
+                まず始めに、PCにFlutterをインストールします。
+                \begin{enumerate}
+                    \item Flutter公式サイト(https://flutter.dev/)にアクセス。
+                    \item "Get Started"を押した後、適当なOSを選択。
+                    \item flutter\_\{OS名\}\_vX.X.X-stable.zipをダウンロード。
+                \end{enumerate}
 
-            \begin{figure}[ht]
-                \centering
-                \includegraphics[width=10cm]{images/flutter_main_page.png}
-                \caption{Flutter公式ページ}
-                \label{fig:flutter_main_page}
+                \begin{figure}[ht]
+                    \centering
+                    \includegraphics[width=10cm]{images/flutter_download_link.png}
+                    \caption{Flutterダウンロードリンク}
+                    \label{fig:flutter_download_link}
+                \end{figure}
 
-                \includegraphics[width=10cm]{images/flutter_download_page.png}
-                \caption{Flutterダウンロードページ}
-                \label{fig:flutter_download_page}
-
-                \includegraphics[width=10cm]{images/flutter_download_link.png}
-                \caption{Flutterダウンロードリンク}
-                \label{fig:flutter_download_link}
-            \end{figure}
-
-        \subsection*{Windows編}
-            さて、ここからはWindowsとOS X、Linuxで手順が変わってくるので、この説では
-            Windowsに重きを置いて残りの解説をします。
-
-            \subsubsection*{SDKのインストール}
-                共通編でダウンロードしてきたSDKをPCにインストールしましょう。
+                次に、ダウンロードしてきたSDKをPCにインストールしましょう。
 
                 \begin{enumerate}
                     \item 任意の場所\footnote{任意の場所がよくわからない人はデスクトップとかが安心です}
                           にダウンロードしてきたzipファイルを解凍。
-                    \item 解凍したフォルダ内のflutter\_console.batを実行。
+                    \item 解凍したフォルダ内のflutter\_console.XXXを実行。
                 \end{enumerate}
 
                 Flutterコンソールが立ち上がれば成功です！
 
                 また、Flutterコンソールではなく、普段使っているコンソールでFlutterをいじりたい方は、
                 「Flutter パス設定\footnote{OSがプログラムを認識できるようにプログラムの場所を示すこと}」
-                などで検索してみたください。
+                などで検索してみてください。
+            
+            \subsubsection*{Android Studioのインストール、設定}
+                次に、Androidでアプリを実行できるようにする、Android Studioというソフトウェアをインストールします。
+                \begin{enumerate}
+                    \item Android Studio公式サイト(https://developer.android.com/studio)にアクセス。
+                    \item "Download Android Studio"からファイルをダウンロード。
+                    \item 指示に従ってインストール。
+                \end{enumerate}
 
-            \subsubsection*{Android Studio、VScodeのインストール、設定}
+                Android Studioを起動することができたら成功です！ \\
+
+                次に、Androidのアプリを実行できるようにエミュレータの設定をしましょう。
+
+                \begin{enumerate}
+                    \item 図\ref{fig:AVD_manager}の赤丸で囲まれたボタンからAVDマネージャーを開く。
+                \end{enumerate}
+
+                \begin{figure}[ht]
+                    \centering
+                    \includegraphics[width=10cm]{images/AVD_manager.png}
+                    \caption{AVDマネージャー}
+                    \label{fig:AVD_manager}
+                \end{figure}
+
+        \subsection*{Windows編}
+            さて、ここからはWindowsとOS X、Linuxで手順が変わってくるので、この節では
+            Windowsに重きを置いて残りの解説をします。
                 
             
 \end{document}
