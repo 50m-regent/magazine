@@ -1,132 +1,305 @@
 \documentclass{jsarticle}
 
 \usepackage[dvipdfmx]{graphicx}
+\usepackage{listings}
+\usepackage[dvips]{color}
 
-\title{Flutterであなたもアプリデベロッパー!!}
+\lstset{
+  basicstyle={\ttfamily},
+  identifierstyle={\small},
+  commentstyle={\smallitshape},
+  keywordstyle={\small\bfseries},
+  ndkeywordstyle={\small},
+  stringstyle={\small\ttfamily},
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},
+  numbers=left,
+  xrightmargin=0zw,
+  xleftmargin=3zw,
+  numberstyle={\scriptsize},
+  stepnumber=1,
+  numbersep=1zw,
+  lineskip=-0.5ex
+}
+
+\renewcommand{\lstlistingname}{ソースコード}
+\pagestyle{empty}
+
+\title{人工無能を作ろう！}
 \author{}
 \date{}
 
 \begin{document}
     \maketitle
-    \tableofcontents
 
     \section*{はじめに}
-        この文章は、筆者が最近アプリ開発を久しぶりにかじり出したら楽しくなっちゃった結果生み出された駄文です。
+        この文章は、筆者が最近ネットでよく見る記事を個人的に分かりやすく整理してみた結果生み出された駄文です。
         心してお読みください。
 
-        この文章を通じて、Flutterというフレームワーク\footnote{システム開発を簡単にできるように用意されたプログラム}
-        を使用して基礎的なアプリ開発ができるようになることを目標としています。想定している読者は以下の通りです。
+        皆さんは「人工無能」というものを知っているでしょうか。人工知能と対比されていそうな名前ですが、
+        歴とした人工知能の一部で、主に会話を行うものを人工無能、またはチャットボットと呼んでいます。
+
+        そんな人工無能ないしチャットボットですが、似たようなものを比較的に簡単に作る方法があります。
+        それがマルコフ連鎖を使うことです。「マルコフ連鎖とは何や？」と思っている方は安心してください。
+        後で書きます。
+
+        この文章ではマルコフ連鎖を使った簡単な文章生成を通じて、マルコフ連鎖とは何か、
+        チャットボットとは何かを少しでも読者の皆さんに伝えることが
+        できれば幸いです。想定している読者は以下の通りです。
 
         \begin{itemize}
-            \item アプリ開発をしたことないけどしてみたい人。
-            \item XcodeやAndroid Studioを使ったアプリ開発はめんどくさい人。
+            \item Twitterとかでよく見る文章自動生成\footnote{しゅうまい君とか}を行いたい人。
+            \item 友達がいないのでAIとお話ししたい人。
+            \item ちょっとぽいもの作ってイキリたい人。
             \item 暇な人。
         \end{itemize}
+        
+        本文では主にPythonのコードを使用して説明しますが、他にも様々な言語で同じことが可能です。
+        Pythonアレルギーの方はお帰りください。
 
-        逆に、今までアプリ開発をいろいろやってきて、「新しいフレームワークでも調べながら
-        ごりごりいじれるよ！」みたいな人は想定していません。お帰りください。
+        また注意点として、Pythonの環境構築やTwitterから文章を持ってきて学習させる方法はここでは書きません。
+        ググれば無限に記事が出てきます。
 
         この文章では、基本的な専門用語も脚注などで軽い説明を入れてあるつもりです。
         わからないところが出てきても、とりあえず少し先まで読んでみてから調べることをお勧めします。
 
-        また、本書で使用しているコードは筆者のGitHub(https://github.com/50m-regent/magazine)で
-        全て公開しているので、ぜひ参考にしてください。
-
         最後に、本書に関してご意見などありましたら筆者のTwitter(@50m\_regent)までご意見を
         いただければ幸いです。
 
-        では、Flutterの世界に飛び込みましょう！
+        では、チャットボットの世界に飛び込みましょう！
 
-    \section*{Flutterって何？}
-        皆さんはGoogleという会社を知っているでしょうか。
-        むしろ知らない人がいるのかというレベルですね。
-        言わずと知れた世界の大企業です。
-        そんなGoogleが開発しているWeb・アプリ開発用フレームワークがFlutterです。
-        皆さんが普段使っているようなGoogleのアプリも、このフレームワークを使用して実装されています。
+    \section*{マルコフ連鎖って何？}
+        まずWikipediaには何と書いてあるか見てみましょう。
 
-        さて、そんなFlutterですが、DartというこれまたGoogleが開発している言語を使用してソースを書きます。
-        個人的に他のアプリ開発方法と比べて嬉しいなと感じた点を挙げてみます。
+        \begin{quote}
+            マルコフ連鎖とは、確率過程の一種であるマルコフ過程のうち、
+            とりうる状態が離散的なものをいう。また特に、時間が離散的なものを指すことが多い。
+        \end{quote}
+
+        この時点で意味不明ですね。もっと簡単に説明します。
+
+        次の二つの文章を見てみましょう。
 
         \begin{itemize}
-            \item GUIで設定やアプリの構成をする必要がなく、
-                　コーディングで全て行うので、シンプルな開発ができる。
-            \item iOS、Android両対応のアプリを簡単に作ることができる。
-            \item 標準でデザインに使えるような部品が用意されている。
+            \item 今日もいい天気ですね。
+            \item 明日も悪い天気でしょう。
         \end{itemize}
 
-        Flutterにはまだまだ沢山の長所がありますが、逆に欠点もあります。
-        中でも最大のものは、日本語の解説が少ないという点です。
-        筆者が開発してる時は、8割以上海外のウェブページを参考にしていました。
+        この文章を単語ごとに分解すると、
         
-        これからFlutterに触れる人たちが英語によって門前払いを食らわずに、
-        この文書を通して少しても忌避感をなくせれば幸いです。
+        \begin{itemize}
+            \item 今日, も, いい, 天気, ですね, 。
+            \item 明日, も, 悪い, 天気, でしょ, う, 。
+        \end{itemize}
 
-    \section*{環境構築}
-        さて、まずはじめにFlutterで開発ができる環境を作らないといけません。
+        となります。
 
-        Android StudioというIDE\footnote{統合開発環境。一つのソフトウェアでシステム開発ができるようにしてあるもの}
-        を使用する方法と、VScodeというエディタを使用する方法
-        がありますが、個人的にオススメのVScodeの方を解説していきたいと思います。
-        「Android Studioで開発しないと耐えられない！」という人は各自調べてください。
+        この二つの文章だけを見ると、'も'のあとはそれぞれ50\%の確率で'いい'、'悪い'が続くことが分かります。
+        逆に、'今日'と'明日'の後には絶対'も'が続きます。
 
-        なお、iOSアプリの開発をするにはOS Xが必須です。ご了承ください。
+        このように、今の状態\footnote{文章を前からみていくするときに、一番最後に選んだ単語}
+        をみた上で、次の単語を選択していくのがマルコフ連鎖です。
 
-        \subsection*{全OS共通編}
-            \subsubsection*{Flutter SDK\footnote{ソフトウェアを使うためにセットにされてるファイル}のダウンロード、インストール}
-                まず始めに、PCにFlutterをインストールします。
-                \begin{enumerate}
-                    \item Flutter公式サイト(https://flutter.dev/)にアクセス。
-                    \item "Get Started"を押した後、適当なOSを選択。
-                    \item flutter\_\{OS名\}\_vX.X.X-stable.zipをダウンロード。
-                \end{enumerate}
+        また、$n$個の単語をみて次の単語を選ぶこと
+        \footnote{$n=2$の例: '今日'と'も'をみて、'今日も'の後に続く'いい'を予想}
+        を$n$階マルコフ連鎖と言います。
+        階数を増やせば増やすほど、元の文章の再現度が上がりますが、
+        生成される文章のパターンが減ってしまいます。
+        階数の調節も、マルコフ連鎖による文章生成の面白いところです。
+    
+    \section*{簡単な文章生成をしてみよう}
+        上の節で説明したマルコフ連鎖を使って文章を生成してみたいと思います。
+        Pythonコードを書きますが、意味を全て日本語で書くので、Pythonがわからない人は自分の好きな
+        言語で書いてみてください。
 
-                \begin{figure}[ht]
-                    \centering
-                    \includegraphics[width=10cm]{images/flutter_download_link.png}
-                    \caption{Flutterダウンロードリンク}
-                    \label{fig:flutter_download_link}
-                \end{figure}
+        一部Janomeというモジュール
+        \footnote{簡単にいうと先人の知恵。いろいろな機能がまとめられてるプログラムのこと。}
+        を使っていますが、いろんな言語でその代わりになるものがあると思うので、"\{言語名\} 分かち書き"
+        とかで調べてみてください。
 
-                次に、ダウンロードしてきたSDKをPCにインストールしましょう。
+        \subsection*{文章の読み込み、辞書への登録}
+            始めに、文章を渡したらそれを元に辞書を作成してくれる関数を書きます。
+            ソースコード\ref{dict}を参考にしてみてください。
 
-                \begin{enumerate}
-                    \item 任意の場所\footnote{任意の場所がよくわからない人はデスクトップとかが安心です}
-                          にダウンロードしてきたzipファイルを解凍。
-                    \item 解凍したフォルダ内のflutter\_console.XXXを実行。
-                \end{enumerate}
+            \begin{lstlisting}[caption=辞書を作成する関数, label=dict]
+# 分かち書きをしてくれるクラス
+from janome.tokenizer import Tokenizer
 
-                Flutterコンソールが立ち上がれば成功です！
-
-                また、Flutterコンソールではなく、普段使っているコンソールでFlutterをいじりたい方は、
-                「Flutter パス設定\footnote{OSがプログラムを認識できるようにプログラムの場所を示すこと}」
-                などで検索してみてください。
-            
-            \subsubsection*{Android Studioのインストール、設定}
-                次に、Androidでアプリを実行できるようにする、Android Studioというソフトウェアをインストールします。
-                \begin{enumerate}
-                    \item Android Studio公式サイト(https://developer.android.com/studio)にアクセス。
-                    \item "Download Android Studio"からファイルをダウンロード。
-                    \item 指示に従ってインストール。
-                \end{enumerate}
-
-                Android Studioを起動することができたら成功です！ \\
-
-                次に、Androidのアプリを実行できるようにエミュレータの設定をしましょう。
-
-                \begin{enumerate}
-                    \item 図\ref{fig:AVD_manager}の赤丸で囲まれたボタンからAVDマネージャーを開く。
-                \end{enumerate}
-
-                \begin{figure}[ht]
-                    \centering
-                    \includegraphics[width=10cm]{images/AVD_manager.png}
-                    \caption{AVDマネージャー}
-                    \label{fig:AVD_manager}
-                \end{figure}
-
-        \subsection*{Windows編}
-            さて、ここからはWindowsとOS X、Linuxで手順が変わってくるので、この節では
-            Windowsに重きを置いて残りの解説をします。
+# マルコフ連鎖の階数
+CHUNK_LENGTH = 2
                 
-            
+# 文章を受け取って辞書に登録する関数
+def make_dict(text):
+    # 単語ごとの配列にする。分かち書きの引数を設定すると分かち書きになる
+    words = Tokenizer().tokenize(text, wakati=True)
+                
+    # 最後に読んだ単語の配列。二個持っておく
+    keywords    = []
+    # 辞書。三個の単語に対してそれに続いたことのある単語たちを登録する。
+    markov_dict = {}
+                
+    # 文章中の単語を一つずつ見る
+    for word in words:
+        # keywordsに二つ単語が入っていたらそれに続く単語を登録
+        if len(keywords) == CHUNK_LENGTH:
+            # 辞書にkeywordsの単語たちが始めて出現していたら空配列で初期化
+            if tuple(keywords) not in markov_dict:
+                markov_dict[tuple(keywords)] = []
+            # 次に続く単語を登録
+            markov_dict[tuple(keywords)].append(word)
+
+            # 最後に追加した単語を後ろ二つにする
+            keywords = keywords[1:]
+        # 今出現した単語を追加
+        keywords.append(word)
+    
+    # 辞書を返す
+    return markov_dict
+            \end{lstlisting}
+
+            入力に先ほどの文を渡してみましょう。
+
+            すると、words = ['今日', 'も', 'いい', '天気', 'ですね', '。',
+            '明日', 'も', '悪い', '天気', 'でしょ', 'う', '。']となります。
+
+            この単語リストから辞書を生成すると、dict = \{
+                ('今日', 'は'): ['いい'],
+                ('は', 'いい'): ['天気'],
+                ('いい', '天気'): ['です'],
+                ('天気', 'です'): ['ね'],
+                ('です', 'ね'): ['。'],
+                ('ね', '。'): ['明日'],
+                ('。', '明日'): ['も'],
+                ('明日', 'も'): ['悪い'],
+                ('も', '悪い'): ['天気'],
+                ('悪い', '天気'): ['でしょ'],
+                ('天気', 'でしょ'): ['う'],
+                ('でしょ', 'う'): ['。']
+            \}
+            となります。
+
+            今回は文章が短いので、辞書も小さいですが、もっと長い文章を入力すると
+            大きい辞書を作ることができます！
+
+            また、'。'を含んだ状態を作らないなどの工夫をするとより性能をあげることができるので
+            是非やってみてください。
+
+        \subsection*{辞書から文章生成}
+            次に、作成した辞書から文章を生成する関数を書きます。
+
+            \begin{lstlisting}[caption=文章を生成する関数]
+# ランダムに選択する関数
+from random import choice
+
+# 受け取った辞書を元に文を生成する関数
+def generate_sentence(markov_dict):
+    # 文を空文字列で初期化
+    sentence = ''
+    # 最初の状態をランダムで選択
+    keywords = list(choice(list(markov_dict.keys())))
+
+    # 文が終わるまで無限ループ
+    while True:
+        # 次の単語を辞書の中からランダムで選択して文に追加
+        next_word = choice(markov_dict[tuple(keywords)])
+        sentence += next_word
+
+        # 今選んだ単語が「。」なら終わり
+        if next_word == 。:
+            break
+        
+        # 状態を後ろ二つにして、今出現した単語を追加
+        keywords = keywords[1:] + [next_word]
+
+    # 文を返す
+    return sentence
+            \end{lstlisting}
+
+            8行目のdict.keys()は、辞書に登録されてる状態の一覧を指します。
+
+            dict.keys() = [('今日', 'は'), ('は', 'いい'), ('いい', '天気'),
+            ('天気', 'です'), ('です', 'ね'), ('ね', '。'), ('。', '明日'),
+            ('明日', 'も'), ('も', '悪い'), ('悪い', '天気'), ('天気', 'でしょ'),
+            ('でしょ', 'う')]
+
+            最初にこれらの状態の中からランダムに一つを選んで文章生成を始めて、'。'が出てきた時点で
+            文章を返します。
+
+        \subsection*{プログラムの実行}
+            最後に、これらのコードを実行用のコードをまとめて載せるので、実行してみましょう。
+
+            \begin{lstlisting}[caption=全体のコード]
+from janome.tokenizer import Tokenizer
+from random import choice
+                
+CHUNK_LENGTH = 2
+                
+def make_dict(text):
+    words = Tokenizer().tokenize(text, wakati=True)
+
+    keywords    = []
+    markov_dict = {}
+
+    for word in words:
+        if len(keywords) == CHUNK_LENGTH:
+            if tuple(keywords) not in markov_dict:
+                markov_dict[tuple(keywords)] = []
+            markov_dict[tuple(keywords)].append(word)
+                
+            keywords = keywords[1:]
+        keywords.append(word)
+                    
+    return markov_dict
+                
+def generate_sentence(markov_dict):
+    sentence = ''
+    keywords = list(choice(list(markov_dict.keys())))
+
+    while True:
+        next_word = choice(markov_dict[tuple(keywords)])
+        sentence += next_word
+
+        if next_word == 。:
+            break
+                        
+        keywords = keywords[1:] + [next_word]
+                
+    return sentence
+                
+if __name__ == '__main__':
+    # 文章で入力を受け取る
+    text = input('文章<< ')
+                
+    # 辞書を作成
+       markov_dict = make_dict(text)
+       # 文を生成
+       sentence    = generate_sentence(markov_dict)
+                
+    # 文を出力
+       print(sentence)
+            \end{lstlisting}
+
+            今回は検証用に宮沢賢治の「注文の多い料理店」を使用します。生成された文章をいくつか載せます。
+
+            \begin{itemize}
+                \item はいっても、もうもとのとおりになおりませんでした。
+                \item さいふやネクタイピンは、西洋料理店というのは、
+                      どうも酢のような犬が封筒になって戻ってきて、来た人を西洋料理を、
+                      頭へぱちゃぱちゃ振りかけました。
+                \item 穴が二つつき、銀いろのホークとナイフの形が切りだして、それらがさがさ鳴りました。
+            \end{itemize}
+
+            どうでしょう。変な日本語ではありますが、それなりの文章が生成されてるのではないでしょうか。
+            文体はまさに宮沢賢治のそれです。
+            マルコフ連鎖の階数を調節したり、他の工夫を施すことでいろいろな文章を生成することができます。
+
+    \section*{おわりに}
+        初めての文章生成はどうでしたでしょうか。この記事が皆さんの記憶に少しでも残れば幸いです。
+
+        人工無能に興味を持った方は、いろいろもっと先を調べてみて、
+        是非会話機能などを作ってみてください。
+        もちろんツイッターなどで聞いてくださってもいいです。
+
+        ここまで読んでくださってありがとうございました。良い人工無能ライフを！
 \end{document}
